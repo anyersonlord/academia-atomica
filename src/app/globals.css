@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --color-canvas: var(--bg-canvas);
+  --color-panel: var(--bg-panel);
+  --color-elevated: var(--bg-elevated);
+  --color-recessed: var(--bg-recessed);
+  --color-interactive: var(--bg-interactive);
+
+  --color-ink-primary: var(--ink-primary);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+
+  --color-phys-electric: var(--phys-electric);
+  --color-phys-magnetic: var(--phys-magnetic);
+  --color-phys-thermal: var(--phys-thermal);
+  --color-phys-mechanical: var(--phys-mechanical);
+  --color-phys-signal: var(--phys-signal);
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-canvas);
+    color: var(--ink-primary);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--ink-primary);
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--phys-electric-surface);
+    color: var(--ink-primary);
+  }
+}
+
+/* Prosa socrática calibrada (65ch–70ch, ritmo de baja carga cognitiva) */
+.socratic-prose {
+  max-width: var(--prose-measure);
+  font-size: var(--prose-size);
+  line-height: var(--prose-leading);
+  letter-spacing: -0.006em;
+  color: var(--ink-primary);
+}
+
+.socratic-prose p + p {
+  margin-top: 1.15em;
+}
+
+/* Instrumentación numérica tabular obligatoria */
+.tabular-readout {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+/* Integración limpia de KaTeX con la paleta científica */
+.katex-display {
+  margin: 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+.katex {
+  font-size: 1.05em;
+  color: var(--ink-primary);
+}
+
+/* Foco de teclado de alta precisión */
+.focus-instrument:focus-visible {
+  outline: 1.5px solid var(--focus-ring);
+  outline-offset: 2px;
+}

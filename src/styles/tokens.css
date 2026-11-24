@@ -1,0 +1,128 @@
+/* ============================================================================
+ * Academia Atómica: Grupos Electrógenos — Sistema Estricto de Design Tokens
+ * Estética: Instrumentación Científica de Precisión + Diseño Editorial Moderno
+ * Espacio Cromático Físico: OKLCH perceptualmente uniforme (L0 → L11)
+ * ============================================================================ */
+
+:root,
+[data-theme="dark-lab"] {
+  color-scheme: dark;
+
+  /* --- Elevación por Luminancia Escalonada (Cero #000000) --- */
+  --bg-canvas: #0a0c10;
+  --bg-panel: #11141b;
+  --bg-elevated: #171b24;
+  --bg-recessed: #07090d;
+  --bg-interactive: #1e2430;
+
+  /* --- Bordes Estructurales de 1px (Cero sombras pesadas) --- */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.11);
+  --border-strong: rgba(255, 255, 255, 0.22);
+
+  /* --- Tintas Monocromáticas Calibradas --- */
+  --ink-primary: #eaecef;
+  --ink-secondary: #9ba3b4;
+  --ink-muted: #7f889c;
+  --ink-grid: rgba(255, 255, 255, 0.065);
+  --ink-grid-major: rgba(255, 255, 255, 0.13);
+
+  /* --- Semántica Cromática Física Inmutable (OKLCH Dark Lab) --- */
+  --phys-electric: oklch(0.770 0.132 222.0);
+  --phys-electric-ink: oklch(0.830 0.112 222.0);
+  --phys-electric-surface: color-mix(in oklch, var(--phys-electric) 11%, transparent);
+  --phys-electric-border: color-mix(in oklch, var(--phys-electric) 32%, transparent);
+
+  --phys-magnetic: oklch(0.750 0.138 292.0);
+  --phys-magnetic-ink: oklch(0.820 0.096 292.0);
+  --phys-magnetic-surface: color-mix(in oklch, var(--phys-magnetic) 11%, transparent);
+  --phys-magnetic-border: color-mix(in oklch, var(--phys-magnetic) 32%, transparent);
+
+  --phys-thermal: oklch(0.780 0.148 68.0);
+  --phys-thermal-ink: oklch(0.840 0.122 70.0);
+  --phys-thermal-surface: color-mix(in oklch, var(--phys-thermal) 11%, transparent);
+  --phys-thermal-border: color-mix(in oklch, var(--phys-thermal) 32%, transparent);
+
+  --phys-mechanical: oklch(0.770 0.135 162.0);
+  --phys-mechanical-ink: oklch(0.830 0.112 162.0);
+  --phys-mechanical-surface: color-mix(in oklch, var(--phys-mechanical) 11%, transparent);
+  --phys-mechanical-border: color-mix(in oklch, var(--phys-mechanical) 32%, transparent);
+
+  /* Token reservado para Capa L8+ (Señal / Control / Telemetría) */
+  --phys-signal: oklch(0.750 0.148 350.0);
+  --phys-signal-ink: oklch(0.820 0.118 350.0);
+  --phys-signal-surface: color-mix(in oklch, var(--phys-signal) 11%, transparent);
+  --phys-signal-border: color-mix(in oklch, var(--phys-signal) 32%, transparent);
+
+  /* --- Estados Operativos Sobrios (Separados de la Física) --- */
+  --state-verified: oklch(0.76 0.11 155);
+  --state-mismatch: oklch(0.71 0.15 22);
+  --focus-ring: rgba(234, 236, 239, 0.35);
+
+  /* --- Sombra mínima de precisión únicamente para popovers flotantes --- */
+  --shadow-popover: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
+
+  /* --- Métricas Tipográficas y de Respiración --- */
+  --prose-measure: 68ch;
+  --prose-size: 1.0625rem;
+  --prose-leading: 1.72;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+}
+
+[data-theme="light-editorial"] {
+  color-scheme: light;
+
+  /* --- Elevación Editorial Limpia (Lectura Prolongada) --- */
+  --bg-canvas: #f8f9fa;
+  --bg-panel: #f1f3f6;
+  --bg-elevated: #ffffff;
+  --bg-recessed: #edf0f4;
+  --bg-interactive: #e6ebf1;
+
+  /* --- Bordes Estructurales de 1px --- */
+  --border-subtle: rgba(15, 23, 42, 0.07);
+  --border-default: rgba(15, 23, 42, 0.13);
+  --border-strong: rgba(15, 23, 42, 0.25);
+
+  /* --- Tintas Editoriales Calibradas --- */
+  --ink-primary: #11151e;
+  --ink-secondary: #475162;
+  --ink-muted: #5b6578;
+  --ink-grid: rgba(15, 23, 42, 0.065);
+  --ink-grid-major: rgba(15, 23, 42, 0.135);
+
+  /* --- Semántica Cromática Física Inmutable (OKLCH Light Editorial WCAG AA+) --- */
+  --phys-electric: oklch(0.550 0.118 235.0);
+  --phys-electric-ink: oklch(0.440 0.096 235.0);
+  --phys-electric-surface: color-mix(in oklch, var(--phys-electric) 9%, transparent);
+  --phys-electric-border: color-mix(in oklch, var(--phys-electric) 30%, transparent);
+
+  --phys-magnetic: oklch(0.530 0.175 288.0);
+  --phys-magnetic-ink: oklch(0.430 0.160 288.0);
+  --phys-magnetic-surface: color-mix(in oklch, var(--phys-magnetic) 9%, transparent);
+  --phys-magnetic-border: color-mix(in oklch, var(--phys-magnetic) 30%, transparent);
+
+  /* Especial atención: Thermal profundizado en Light Editorial para contraste AA+/AAA en texto pequeño */
+  --phys-thermal: oklch(0.600 0.144 58.0);
+  --phys-thermal-ink: oklch(0.450 0.122 52.0);
+  --phys-thermal-surface: color-mix(in oklch, var(--phys-thermal) 10%, transparent);
+  --phys-thermal-border: color-mix(in oklch, var(--phys-thermal) 32%, transparent);
+
+  --phys-mechanical: oklch(0.540 0.120 162.0);
+  --phys-mechanical-ink: oklch(0.430 0.098 162.0);
+  --phys-mechanical-surface: color-mix(in oklch, var(--phys-mechanical) 9%, transparent);
+  --phys-mechanical-border: color-mix(in oklch, var(--phys-mechanical) 30%, transparent);
+
+  --phys-signal: oklch(0.550 0.170 350.0);
+  --phys-signal-ink: oklch(0.440 0.150 350.0);
+  --phys-signal-surface: color-mix(in oklch, var(--phys-signal) 9%, transparent);
+  --phys-signal-border: color-mix(in oklch, var(--phys-signal) 30%, transparent);
+
+  --state-verified: oklch(0.45 0.12 155);
+  --state-mismatch: oklch(0.5 0.18 24);
+  --focus-ring: rgba(17, 21, 30, 0.28);
+
+  --shadow-popover: 0 12px 28px -12px rgba(15, 23, 42, 0.14);
+}
