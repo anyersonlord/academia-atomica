@@ -14,8 +14,9 @@
 | Categoría de tabla | Rol `anon` | Rol `authenticated` | Rol `service_role` (solo CLI) | Condición RLS |
 | :--- | :--- | :--- | :--- | :--- |
 | Interna (`schema_migrations`) | Revocado | Revocado | Completo | Sin políticas de cliente |
-| Curricular (`layers`, nodos, composiciones, relaciones, revisiones, `glossary_terms`) | Revocado | `SELECT` | Completo | `USING (true)` solo lectura para `authenticated` |
-| Personal (`user_*_progress`, `user_*_notes`, `user_workspace_preferences`) | Revocado | `SELECT`, `INSERT`, `UPDATE`, `DELETE` | Completo | `USING (auth.uid() = user_id)` y `WITH CHECK (auth.uid() = user_id)` |
+| Curricular (`layers`, `concept_nodes`, `node_compositions`, `node_relations`, `node_revisions`, `glossary_terms`) | Revocado | `SELECT` | Completo | `USING (true)` solo lectura para `authenticated`; `node_revisions` es *append-only* |
+| Progreso y preferencias (`user_node_progress`, `user_workspace_preferences`) | Revocado | `SELECT`, `INSERT`, `UPDATE`, `DELETE` | Completo | `USING (auth.uid() = user_id)` y `WITH CHECK (auth.uid() = user_id)` |
+| Notas propias (`user_node_notes`) | Revocado | `SELECT`, `INSERT`, `UPDATE` (**`DELETE` revocado**) | Completo | `auth.uid() = user_id`; anclas inmutables y solo editable mientras `node_revision = content_revision` vigente (`ON DELETE CASCADE` únicamente desde `auth.users`) |
 
 > En este proyecto de Supabase las opciones de concesión automática y RLS automático están desactivadas a nivel de plataforma; por tanto, **cada migración SQL debe declarar `GRANT`, `REVOKE` y `ENABLE ROW LEVEL SECURITY` de forma explícita**.
 
@@ -37,5 +38,5 @@ El repositorio remoto (`anyersonlord/academia-atomica`) es público. Se aplican 
 ## 5. Soberanía y portabilidad local (`exports/`)
 
 Para evitar dependencia de proveedor (*vendor lock-in*), el Bloque 1.3B-1 incorpora exportación local determinista por CLI a la carpeta `exports/` (ignorada por Git):
-- **JSON estructurado completo:** estratos, nodos, revisiones, composiciones M:N, relaciones semánticas, glosario, progreso y todas las notas propias del autor.
+- **JSON estructurado completo (`bundle.json`):** estratos, nodos, revisiones, composiciones M:N, relaciones semánticas, glosario, progreso, notas propias y preferencias de espacio de trabajo (`user_workspace_preferences`), todo con orden determinista.
 - **Espejo legible en Markdown:** un archivo `.md` limpio por nodo con sus etapas, escenas, referencias y el historial cronológico de notas personales del autor, legible sin necesidad de base de datos ni navegador.

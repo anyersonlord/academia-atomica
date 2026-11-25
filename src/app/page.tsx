@@ -30,8 +30,9 @@ export default async function HomePage() {
       .select("code, order_index, title, subtitle, physical_scope, status")
       .order("order_index", { ascending: true }),
     supabase
-      .from("concept_atoms")
+      .from("concept_nodes")
       .select("code, slug, title, status")
+      .eq("is_layer_root", false)
       .in("status", ["published", "calibration"])
       .order("code", { ascending: true })
       .limit(1),
@@ -109,7 +110,7 @@ export default async function HomePage() {
 
             {frontierAtom && (
               <Link
-                href={`/atomo/${frontierAtom.slug}`}
+                href={`/nodo/${frontierAtom.slug}`}
                 className="focus-instrument inline-flex items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-strong)] bg-[var(--bg-elevated)] px-3.5 py-1.5 text-xs font-medium text-[var(--ink-primary)] transition-colors duration-150 hover:bg-[var(--bg-interactive)]"
               >
                 <span>Comenzar</span>

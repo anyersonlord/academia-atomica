@@ -11,9 +11,10 @@
 | `pnpm lint` | ESLint (`eslint-config-next`) |
 | `pnpm run build` | Build de producción (con `CI=true`) |
 | `pnpm db:migrate` | Aplica `supabase/migrations/*.sql` sobre `DATABASE_URL` |
-| `pnpm db:seed:layers` | Sincroniza el esqueleto L0–L11 |
+| `pnpm db:seed:layers` | Sincroniza el esqueleto L0–L11 y sus 12 nodos raíz (`capa-l0`..`capa-l11`) |
 | `pnpm db:bootstrap-user` | Crea o sincroniza la cuenta personal desde `.env.local` |
-| `pnpm db:verify` | Auditoría Zero-Trust: RLS, capas, bloqueo de ciclos, rol anónimo |
+| `pnpm db:verify` | Auditoría Zero-Trust: RLS en 10 tablas, raíces de capa, anti-ciclos, inmutabilidad y rol anónimo |
+| `pnpm export` | Exporta respaldo local determinista (`bundle.json` + Markdown por nodo) en `exports/` |
 | `pnpm exec tsx scripts/audit-tokens.ts` | Informe de gamut y contraste de los tokens físicos |
 
 ## Verificación completa (antes de cada compuerta y de cada commit)

@@ -13,7 +13,8 @@
     "db:migrate": "tsx scripts/db-migrate.ts",
     "db:seed:layers": "tsx scripts/db-seed-layers.ts",
     "db:bootstrap-user": "tsx scripts/db-bootstrap-user.ts",
-    "db:verify": "tsx scripts/db-verify-rls.ts"
+    "db:verify": "tsx scripts/db-verify-rls.ts",
+    "export": "tsx scripts/db-export.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

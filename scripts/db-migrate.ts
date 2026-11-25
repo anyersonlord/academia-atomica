@@ -31,7 +31,25 @@ async function main() {
 
   await client.connect();
   try {
+    const hasHistoryTable = await client.query<{ exists: boolean }>(
+      `SELECT to_regclass('public.schema_migrations') IS NOT NULL AS exists`
+    );
+
+    const applied = new Set<string>();
+    if (hasHistoryTable.rows[0]?.exists) {
+      const res = await client.query<{ filename: string }>(
+        `SELECT filename FROM public.schema_migrations`
+      );
+      for (const row of res.rows) {
+        applied.add(row.filename);
+      }
+    }
+
     for (const file of files) {
+      if (applied.has(file)) {
+        console.log(`Omitida (ya aplicada): ${file}`);
+        continue;
+      }
       const fullPath = path.join(migrationsDir, file);
       const sql = fs.readFileSync(fullPath, "utf8");
       console.log(`Aplicando migración: ${file}...`);
